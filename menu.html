@@ -9,25 +9,21 @@
     <div class="chat">
       <div class="chat-header">
         <div class="chat-title">
-          <div class="status-dot" aria-hidden="true"></div>
+          <div class="status-dot"></div>
           EZCalendar
         </div>
-        <div class="chat-actions">
-          <button class="icon-btn" id="clearBtn" type="button" title="Clear chat" aria-label="Clear chat">Clear</button>
-        </div>
       </div>
-      <div class="messages" id="messages" aria-live="polite" aria-label="Chat messages">
+      <div class="messages" id="messages">
         <div class="message bot">
-          <div class="avatar" aria-hidden="true">EZ</div>
-          <div class="bubble">
-            Hi! Tell me what to schedule and I’ll draft an event.
-            <span class="timestamp">Say things like: “Lunch with Sam next Tue at noon”</span>
+          <div class="avatar">EZ</div>
+          <div class="bubble">Hi! Tell me what to schedule and I'll draft an event.
+            <span class="timestamp">Say things like: "Lunch with Sam next Tue at noon"</span>
           </div>
         </div>
       </div>
       <form class="composer" id="composer" autocomplete="off">
-        <textarea id="input" class="input" placeholder="Type a message..." rows="1" aria-label="Message"></textarea>
-        <button id="sendBtn" class="send-btn" type="submit" aria-label="Send">Send</button>
+        <textarea id="input" class="input" placeholder="Type a message..." rows="1"></textarea>
+        <button id="sendBtn" class="send-btn" type="submit">Send</button>
       </form>
     </div>
     <script src="script.js"></script>

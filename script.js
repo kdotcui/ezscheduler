@@ -4,7 +4,6 @@
   const inputEl = document.getElementById('input');
   const formEl = document.getElementById('composer');
   const sendBtn = document.getElementById('sendBtn');
-  const clearBtn = document.getElementById('clearBtn');
 
   function formatTime(date) {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -63,12 +62,6 @@
     }
   });
 
-  clearBtn.addEventListener('click', () => {
-    const first = messagesEl.firstElementChild;
-    messagesEl.innerHTML = '';
-    if (first) messagesEl.appendChild(first);
-    scrollToBottom();
-  });
 
   formEl.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -85,7 +78,7 @@
     try {
       // Simulated bot reply for now
       await new Promise((r) => setTimeout(r, 350));
-      const botText = `You said: "${text}"\n(I'll turn this into a calendar event soon.)`;
+      const botText = "Hi, I'm not set up yet! soon ->>";
       const botEl = createMessageElement('bot', botText);
       messagesEl.appendChild(botEl);
       scrollToBottom();

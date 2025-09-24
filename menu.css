@@ -62,15 +62,6 @@ html, body {
   align-items: center;
   gap: 6px;
 }
-.icon-btn {
-  appearance: none;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  color: var(--muted);
-  border-radius: 8px;
-  padding: 6px 8px;
-  cursor: pointer;
-}
 
 .messages {
   flex: 1 1 auto;
