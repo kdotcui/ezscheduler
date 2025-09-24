@@ -1,0 +1,10 @@
+{
+  "name": "EZCalendar",
+  "description": "Takes in natural language and puts it in your calendar so you don't have to",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "menu.html",
+    "default_icon": "calendarlogo.png"
+  }
+}
