@@ -4,6 +4,7 @@
   const inputEl = document.getElementById('input');
   const formEl = document.getElementById('composer');
   const sendBtn = document.getElementById('sendBtn');
+  const settingsBtn = document.getElementById('settingsBtn');
 
   function formatTime(date) {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -62,6 +63,9 @@
     }
   });
 
+  settingsBtn.addEventListener('click', () => {
+    window.open('settings.html', '_self');
+  });
 
   formEl.addEventListener('submit', async (e) => {
     e.preventDefault();
