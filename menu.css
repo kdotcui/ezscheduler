@@ -189,14 +189,11 @@ html, body {
   border: 1px solid var(--border);
   border-radius: 6px;
   z-index: 1000;
+  padding: 2px 0;
 }
 
 #settingsDropdown.hidden {
   display: none;
-}
-
-#settingsMenu {
-  padding: 2px 0;
 }
 
 .settings-item {

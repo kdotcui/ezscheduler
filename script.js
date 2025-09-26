@@ -5,6 +5,7 @@
   const formEl = document.getElementById('composer');
   const sendBtn = document.getElementById('sendBtn');
   const settingsBtn = document.getElementById('settingsBtn');
+  const settingsDropdown = document.getElementById('settingsDropdown');
 
   function formatTime(date) {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -64,18 +65,17 @@
   });
 
   // Settings dropdown functionality
-  const settingsDropdown = document.getElementById('settingsDropdown');
-  const settingsMenu = document.getElementById('settingsMenu');
+
 
   // Load settings content immediately since it's bundled
   async function loadSettingsContent() {
     try {
       const response = await fetch('SettingsContent.html');
       const html = await response.text();
-      settingsMenu.innerHTML = html;
+      settingsDropdown.innerHTML = html;
     } catch (error) {
       console.error('Failed to load settings content:', error);
-      settingsMenu.innerHTML = '<div class="settings-item">Settings</div>';
+      settingsDropdown.innerHTML = '<div class="settings-item">Settings</div>';
     }
   }
 
