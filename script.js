@@ -1,6 +1,6 @@
 // Minimal chat behaviors for popup
 (() => {
-  const messagesEl = document.getElementById('messages');
+  const messagesContainer = document.getElementById('messages');
   const inputEl = document.getElementById('input');
   const formEl = document.getElementById('composer');
   const sendBtn = document.getElementById('sendBtn');
@@ -10,12 +10,12 @@
   }
 
   function scrollToBottom() {
-    messagesEl.scrollTop = messagesEl.scrollHeight;
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 
   function createMessageElement(role, text) {
-    const wrapper = document.createElement('div');
-    wrapper.className = `message ${role}`;
+    const messageElement = document.createElement('div');
+    messageElement.className = `message ${role}`;
 
     const avatar = document.createElement('div');
     avatar.className = 'avatar';
@@ -31,14 +31,14 @@
     bubble.appendChild(ts);
 
     if (role === 'user') {
-      wrapper.appendChild(bubble);
-      wrapper.appendChild(avatar);
+      messageElement.appendChild(bubble);
+      messageElement.appendChild(avatar);
     } else {
-      wrapper.appendChild(avatar);
-      wrapper.appendChild(bubble);
+      messageElement.appendChild(avatar);
+      messageElement.appendChild(bubble);
     }
 
-    return wrapper;
+    return messageElement;
   }
 
   function setSendingState(isSending) {
@@ -69,7 +69,7 @@
     if (!text) return;
 
     const userEl = createMessageElement('user', text);
-    messagesEl.appendChild(userEl);
+    messagesContainer.appendChild(userEl);
     scrollToBottom();
     inputEl.value = '';
     autoresize();
@@ -80,11 +80,11 @@
       await new Promise((r) => setTimeout(r, 350));
       const botText = "Hi, I'm not set up yet! soon ->>";
       const botEl = createMessageElement('bot', botText);
-      messagesEl.appendChild(botEl);
+      messagesContainer.appendChild(botEl);
       scrollToBottom();
     } catch (err) {
       const botEl = createMessageElement('bot', 'Sorry, something went wrong.');
-      messagesEl.appendChild(botEl);
+      messagesContainer.appendChild(botEl);
       scrollToBottom();
     } finally {
       setSendingState(false);
