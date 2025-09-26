@@ -64,9 +64,6 @@
     }
   });
 
-  // Settings dropdown functionality
-
-
   // Load settings content immediately since it's bundled
   async function loadSettingsContent() {
     try {
@@ -81,6 +78,66 @@
 
   // Load settings on page load
   loadSettingsContent();
+
+  // Handle settings form interactions after content is loaded
+  async function initializeSettings() {
+    await loadSettingsContent();
+    
+    const modelSelect = document.getElementById('modelSelect');
+    const apiKeyInput = document.getElementById('apiKey');
+    
+    if (modelSelect) {
+      // Load saved model preference
+      chrome.storage.sync.get(['selectedModel'], (result) => {
+        if (result.selectedModel) {
+          modelSelect.value = result.selectedModel;
+        }
+      });
+      
+      // Save model selection when changed
+      modelSelect.addEventListener('change', (e) => {
+        chrome.storage.sync.set({
+          selectedModel: e.target.value
+        });
+        console.log('Model selected:', e.target.value);
+      });
+    }
+    
+    if (apiKeyInput) {
+      // Load saved API key
+      chrome.storage.sync.get(['apiKey'], (result) => {
+        if (result.apiKey) {
+          apiKeyInput.value = result.apiKey;
+        }
+      });
+      
+      // Save API key when changed (with debounce)
+      let apiKeyTimeout;
+      apiKeyInput.addEventListener('input', (e) => {
+        clearTimeout(apiKeyTimeout);
+        apiKeyTimeout = setTimeout(() => {
+          chrome.storage.sync.set({
+            apiKey: e.target.value
+          });
+        }, 300);
+      });
+    }
+  }
+
+  // Initialize settings when page loads
+  initializeSettings();
+
+  // Helper function to get all settings
+  async function getSettings() {
+    return new Promise((resolve) => {
+      chrome.storage.sync.get(['selectedModel', 'apiKey'], (result) => {
+        resolve({
+          selectedModel: result.selectedModel || 'gpt-5-nano',
+          apiKey: result.apiKey || ''
+        });
+      });
+    });
+  }
   
   settingsBtn.addEventListener('click', (e) => {
     e.stopPropagation();

@@ -157,6 +157,14 @@ html, body {
   position: relative;
 }
 
+/* Ensure dropdown doesn't get cut off on small screens */
+@media (max-width: 400px) {
+  #settingsDropdown {
+    right: -10px;
+    min-width: 280px;
+  }
+}
+
 #settingsBtn {
   appearance: none;
   border: none;
@@ -185,26 +193,91 @@ html, body {
   top: 100%;
   right: 0;
   margin-top: 2px;
+  min-width: 240px;
+  max-width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 6px;
   z-index: 1000;
-  padding: 2px 0;
+  padding: 4px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 #settingsDropdown.hidden {
   display: none;
 }
 
-.settings-item {
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 13px;
-  white-space: nowrap;
+@media (prefers-color-scheme: dark) {
+  #settingsDropdown {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
 }
 
-.settings-item:hover {
-  background: var(--border);
+.settings-item {
+  padding: 8px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.settings-item input,
+.settings-item textarea,
+.settings-item select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.settings-item input {
+  height: 36px;
+}
+
+.settings-item input[type="password"] {
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+.settings-item textarea {
+  resize: vertical;
+  min-height: 36px;
+  max-height: 100px;
+}
+
+.settings-item select {
+  cursor: pointer;
+}
+
+.settings-item input:focus,
+.settings-item textarea:focus,
+.settings-item select:focus {
+  outline: none;
+  border-color: var(--user-bubble);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.settings-item input:hover,
+.settings-item textarea:hover,
+.settings-item select:hover {
+  border-color: var(--muted);
 }
 
 
