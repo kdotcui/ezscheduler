@@ -63,8 +63,37 @@
     }
   });
 
-  settingsBtn.addEventListener('click', () => {
-    window.open('settings.html', '_self');
+  // Settings dropdown functionality
+  const settingsDropdown = document.getElementById('settingsDropdown');
+  const settingsMenu = document.getElementById('settingsMenu');
+
+  // Load settings content immediately since it's bundled
+  async function loadSettingsContent() {
+    try {
+      const response = await fetch('SettingsContent.html');
+      const html = await response.text();
+      settingsMenu.innerHTML = html;
+    } catch (error) {
+      console.error('Failed to load settings content:', error);
+      settingsMenu.innerHTML = '<div class="settings-item">Settings</div>';
+    }
+  }
+
+  // Load settings on page load
+  loadSettingsContent();
+  
+  settingsBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    settingsDropdown.classList.toggle('hidden');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!settingsDropdown.classList.contains('hidden') && 
+        !settingsDropdown.contains(e.target) && 
+        !settingsBtn.contains(e.target)) {
+      settingsDropdown.classList.add('hidden');
+    }
   });
 
   formEl.addEventListener('submit', async (e) => {

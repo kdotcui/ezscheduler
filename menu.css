@@ -152,4 +152,62 @@ html, body {
   cursor: default;
 }
 
+/* Settings dropdown styles */
+#settingsContainer {
+  position: relative;
+}
+
+#settingsBtn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+#settingsBtn:hover {
+  background: var(--border);
+}
+
+#settingsBtn img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+}
+
+#settingsDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 2px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  z-index: 1000;
+}
+
+#settingsDropdown.hidden {
+  display: none;
+}
+
+#settingsMenu {
+  padding: 2px 0;
+}
+
+.settings-item {
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.settings-item:hover {
+  background: var(--border);
+}
+
 
