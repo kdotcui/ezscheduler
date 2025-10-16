@@ -1,7 +1,7 @@
 import "@/assets/tailwind.css";
 import { useState } from "react";
 import { Settings } from "lucide-react";
-import SettingsModal from "./SettingsModal";
+import SettingsModal from "@/components/SettingsModal";
 import ChatMessages from "@/components/ChatMessages";
 import ChatInput from "@/components/ChatInput";
 import { useChat } from "@/hooks/useChat";
