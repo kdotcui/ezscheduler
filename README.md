@@ -1,6 +1,6 @@
 # EZ Scheduler
 
-An agentic browser extension that uses gpt-5 to convert natural language into calendar events. Simply describe your event in plain English, and let AI handle the scheduling details.
+A (soon to be agentic) browser extension that uses gpt-5 to convert natural language into calendar events. Simply describe your event in plain English, and let AI handle the scheduling details.
 
 ## 🎬 Demo
 
@@ -10,8 +10,8 @@ _Video demo coming soon..._
 
 ## 🛠️ Tech Stack
 
-- **Extension Framework**: [WXT](https://wxt.dev/) - kinda like nextjs for extensions imo
-- **AI Integration**: [OpenAI gpt-5-nano](https://openai.com/) - cheapest model there is, i doubt this app needs anything better. may look into adding other models for ex: deepseek or gemini if bored
+- **[WXT](https://wxt.dev/)**: kinda like nextjs for extensions imo
+- **[OpenAI gpt-5-nano](https://openai.com/)**: cheapest model there is, i doubt this app needs anything better. may look into adding other models for ex: deepseek or gemini if bored
 
 
 ## 🚀 Setup
@@ -32,11 +32,6 @@ _Video demo coming soon..._
 2. **Start development server**
    ```bash
    pnpm dev
-   ```
-
-   For Firefox:
-   ```bash
-   pnpm dev:firefox
    ```
 
 3. **Load the extension in your browser**

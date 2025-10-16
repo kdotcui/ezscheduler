@@ -25,7 +25,7 @@ export default function ChatInput({ onSend, disabled = false }: ChatInputProps) 
   };
 
   return (
-    <div className="border-t border-gray-200 bg-white p-4">
+    <div className="border-t border-zinc-600 bg-gray-800 p-4">
       <div className="flex gap-2">
         <input
           type="text"
@@ -34,12 +34,12 @@ export default function ChatInput({ onSend, disabled = false }: ChatInputProps) 
           onKeyDown={handleKeyDown}
           placeholder="Describe your event... (e.g., 'Team meeting tomorrow at 2pm')"
           disabled={disabled}
-          className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="flex-1 rounded-xl border border-zinc-600 bg-zinc-700 px-4 py-2 text-sm text-zinc-200 placeholder:text-zinc-400 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20 disabled:bg-zinc-800 disabled:cursor-not-allowed"
         />
         <button
           onClick={handleSend}
           disabled={disabled || !input.trim()}
-          className="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+          className="rounded-xl bg-emerald-600 px-4 py-2 text-zinc-200 hover:bg-emerald-500 disabled:bg-zinc-700 disabled:text-zinc-500 disabled:cursor-not-allowed transition-colors"
           aria-label="Send message"
         >
           <Send className="w-5 h-5" />
