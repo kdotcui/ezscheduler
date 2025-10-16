@@ -49,21 +49,21 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-50 pt-20" onClick={onClose}>
       <div className="w-full max-w-md mx-4" onClick={(e) => e.stopPropagation()}>
-        <div className="rounded-lg bg-white shadow-xl ring-1 ring-black/5">
-          <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
-            <h2 className="text-lg font-semibold text-gray-900">Settings</h2>
+        <div className="rounded-xl bg-gray-800 shadow-xl ring-1 ring-zinc-600">
+          <div className="px-4 py-3 border-b border-zinc-600 flex justify-between items-center">
+            <h2 className="text-lg font-semibold text-zinc-200">Settings</h2>
             <button
               onClick={onClose}
-              className="p-1 rounded hover:bg-gray-100 transition-colors"
+              className="p-1 rounded-lg hover:bg-zinc-700 transition-colors"
               aria-label="Close settings"
             >
-              <X className="w-5 h-5 text-gray-500" />
+              <X className="w-5 h-5 text-zinc-400" />
             </button>
           </div>
           
           {/* Security Warning Banner */}
-          <div className="px-4 py-3 bg-red-50 border-b border-red-200">
-            <p className="text-xs text-red-700 leading-relaxed">
+          <div className="px-4 py-3 bg-red-900/30 border-b border-red-800">
+            <p className="text-xs text-red-200 leading-relaxed">
               <span className="font-semibold">Warning:</span> Never share your API key with anyone. 
                 You are solely responsible for all usage and charges associated with your key.
             </p>
@@ -71,7 +71,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
 
           <div className="p-4 space-y-4">
             <div className="space-y-1">
-              <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="apiKey" className="block text-sm font-medium text-zinc-200">
                 OpenAI API Key
               </label>
               <div className="relative">
@@ -81,17 +81,17 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   value={apiKey}
                   onChange={(e) => handleApiKeyChange(e.target.value)}
                   placeholder="Enter your OpenAI API key"
-                  className="w-full rounded-md border border-gray-300 px-3 py-2 pr-16 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="w-full rounded-lg border border-zinc-600 bg-zinc-700 px-3 py-2 pr-16 text-sm text-zinc-200 placeholder:text-zinc-400 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20"
                 />
                 <button
                   type="button"
                   onClick={() => setShowApiKey(!showApiKey)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-zinc-600 rounded-lg transition-colors"
                 >
                   {showApiKey ? (
-                    <EyeOff className="w-4 h-4" aria-label="Hide API key" />
+                    <EyeOff className="w-4 h-4 text-zinc-400" aria-label="Hide API key" />
                   ) : (
-                    <Eye className="w-4 h-4" aria-label="Show API key" />
+                    <Eye className="w-4 h-4 text-zinc-400" aria-label="Show API key" />
                   )}
                 </button>
               </div>
@@ -99,14 +99,14 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="model" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="model" className="block text-sm font-medium text-zinc-200">
                 Model
               </label>
               <select
                 id="model"
                 value={model}
                 onChange={(e) => handleModelChange(e.target.value)}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 bg-white"
+                className="w-full rounded-lg border border-zinc-600 bg-zinc-700 px-3 py-2 text-sm text-zinc-200 outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20"
               >
                 <option value="gpt-5-nano">GPT-5 Nano</option>
                 <option value="gpt-5">GPT-4o</option>

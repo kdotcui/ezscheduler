@@ -11,12 +11,12 @@ export default function ChatMessage({ message }: ChatMessageProps) {
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}>
       <div
-        className={`max-w-[80%] rounded-lg px-4 py-2 ${
+        className={`max-w-[80%] rounded-xl px-4 py-2 ${
           isUser
-            ? 'bg-blue-500 text-white'
+            ? 'bg-emerald-600 text-zinc-200'
             : isError
-            ? 'bg-red-100 text-red-800 border border-red-300'
-            : 'bg-gray-200 text-gray-900'
+            ? 'bg-red-900/40 text-red-200 border border-red-800'
+            : 'bg-gray-800 text-zinc-200'
         }`}
       >
         {isUser ? (
@@ -25,15 +25,15 @@ export default function ChatMessage({ message }: ChatMessageProps) {
           <p className="text-sm">{message.content}</p>
         ) : (
           <div className="space-y-2">
-            <p className="text-xs text-gray-600 mb-2">Generated Calendar Event:</p>
-            <pre className="text-xs overflow-x-auto bg-white p-3 rounded border border-gray-300">
+            <p className="text-xs text-zinc-400 mb-2">Generated Calendar Event:</p>
+            <pre className="text-xs overflow-x-auto bg-zinc-700 p-3 rounded-lg border border-zinc-600">
               <code>{JSON.stringify(message.event, null, 2)}</code>
             </pre>
           </div>
         )}
         <div
           className={`text-xs mt-1 ${
-            isUser ? 'text-blue-100' : isError ? 'text-red-600' : 'text-gray-500'
+            isUser ? 'text-emerald-200' : isError ? 'text-red-400' : 'text-zinc-400'
           }`}
         >
           {message.timestamp.toLocaleTimeString([], {

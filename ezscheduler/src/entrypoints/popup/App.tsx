@@ -13,16 +13,16 @@ function App() {
   const messagesEndRef = useAutoScroll(messages);
 
   return (
-    <div className="flex flex-col h-[600px] w-[400px] bg-gray-50">
+    <div className="flex flex-col h-[600px] w-[400px] bg-zinc-900">
       {/* Header */}
-      <div className="bg-blue-500 flex justify-between items-center p-4 shadow-md">
-        <span className="text-xl text-white font-semibold">EZ Scheduler</span>
+      <div className="bg-gray-800 flex justify-between items-center px-4 py-2 border-b border-zinc-600">
+        <span className="text-lg text-zinc-200 font-semibold">EZ Scheduler</span>
         <button
           onClick={() => setIsSettingsOpen(true)}
-          className="p-2 rounded hover:bg-blue-600 transition-colors"
+          className="p-1.5 rounded-lg hover:bg-emerald-600 transition-colors"
           aria-label="Open settings"
         >
-          <Settings className="text-white" />
+          <Settings className="text-zinc-200" size={20} />
         </button>
       </div>
 
