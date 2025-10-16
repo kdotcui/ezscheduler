@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
+import CloseEye from "@/assets/closeeye.svg";
+import OpenEye from "@/assets/openeye.svg";
 
 export default function SettingsModal() {
   const [apiKey, setApiKey] = useState("");
   const [model, setModel] = useState("gpt-5-nano");
+  const [showApiKey, setShowApiKey] = useState(false);
 
   // Load saved settings on component mount
   useEffect(() => {
     const loadSettings = async () => {
       try {
-        const result = await browser.storage.local.get(['apiKey', 'model']);
-          setApiKey(result.apiKey);
-          setModel(result.model);
-        
+        const savedApiKey = await storage.getItem<string>('local:apiKey');
+        const savedModel = await storage.getItem<string>('local:model');
+        if (savedApiKey) setApiKey(savedApiKey);
+        if (savedModel) setModel(savedModel);
       } catch (error) {
         console.error('Failed to load settings:', error);
       }
@@ -22,7 +25,7 @@ export default function SettingsModal() {
   const handleApiKeyChange = async (value: string) => {
     setApiKey(value);
     try {
-      await browser.storage.local.set({ apiKey: value });
+      await storage.setItem('local:apiKey', value);
     } catch (error) {
       console.error('Failed to save API key:', error);
     }
@@ -31,7 +34,7 @@ export default function SettingsModal() {
   const handleModelChange = async (value: string) => {
     setModel(value);
     try {
-      await browser.storage.local.set({ model: value });
+      await storage.setItem('local:model', value);
     } catch (error) {
       console.error('Failed to save model:', error);
     }
@@ -48,14 +51,27 @@ export default function SettingsModal() {
             <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700">
               API Key
             </label>
-            <input
-              id="apiKey"
-              type="password"
-              value={apiKey}
-              onChange={(e) => handleApiKeyChange(e.target.value)}
-              placeholder="Enter your API key"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-            />
+            <div className="relative">
+              <input
+                id="apiKey"
+                type={showApiKey ? "text" : "password"}
+                value={apiKey}
+                onChange={(e) => handleApiKeyChange(e.target.value)}
+                placeholder="Enter your API key"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 pr-16 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+              />
+              <button
+                type="button"
+                onClick={() => setShowApiKey(!showApiKey)}
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded"
+              >
+                <img 
+                  src={showApiKey ? CloseEye : OpenEye} 
+                  alt={showApiKey ? "Hide API key" : "Show API key"} 
+                  className="w-4 h-4" 
+                />
+              </button>
+            </div>
           </div>
 
           <div className="space-y-1">
