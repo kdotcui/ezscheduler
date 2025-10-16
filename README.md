@@ -10,8 +10,9 @@ _Video demo coming soon..._
 
 ## 🛠️ Tech Stack
 
-- **Extension Framework**: [WXT](https://wxt.dev/) - Next-gen web extension framework
-- **AI Integration**: [OpenAI GPT](https://openai.com/) - Natural language processing for event parsing
+- **Extension Framework**: [WXT](https://wxt.dev/) - kinda like nextjs for extensions imo
+- **AI Integration**: [OpenAI gpt-5-nano](https://openai.com/) - cheapest model there is, i doubt this app needs anything better. may look into adding other models for ex: deepseek or gemini if bored
+
 
 ## 🚀 Setup
 
@@ -56,7 +57,7 @@ After installing the extension, you need to configure your OpenAI API key:
 4. (Optional) Select your preferred GPT model (default: `gpt-4o-2024-08-06`)
 5. Click "Save Settings"
 
-Your API key is stored locally in your browser and never shared.
+Your API key is stored locally in your browser and never shared.  You're responsible for your own keys. 
 
 ## 📝 Usage
 
