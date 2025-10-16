@@ -1,8 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SettingsModal() {
   const [apiKey, setApiKey] = useState("");
   const [model, setModel] = useState("gpt-5-nano");
+
+  // Load saved settings on component mount
+  useEffect(() => {
+    const loadSettings = async () => {
+      try {
+        const result = await browser.storage.local.get(['apiKey', 'model']);
+          setApiKey(result.apiKey);
+          setModel(result.model);
+        
+      } catch (error) {
+        console.error('Failed to load settings:', error);
+      }
+    };
+    loadSettings();
+  }, []);
+
+  const handleApiKeyChange = async (value: string) => {
+    setApiKey(value);
+    try {
+      await browser.storage.local.set({ apiKey: value });
+    } catch (error) {
+      console.error('Failed to save API key:', error);
+    }
+  };
+
+  const handleModelChange = async (value: string) => {
+    setModel(value);
+    try {
+      await browser.storage.local.set({ model: value });
+    } catch (error) {
+      console.error('Failed to save model:', error);
+    }
+  };
 
   return (
     <div className="p-4">
@@ -19,7 +52,7 @@ export default function SettingsModal() {
               id="apiKey"
               type="password"
               value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
+              onChange={(e) => handleApiKeyChange(e.target.value)}
               placeholder="Enter your API key"
               className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             />
@@ -32,7 +65,7 @@ export default function SettingsModal() {
             <select
               id="model"
               value={model}
-              onChange={(e) => setModel(e.target.value)}
+              onChange={(e) => handleModelChange(e.target.value)}
               className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 bg-white"
             >
               <option value="gpt-5-nano">GPT-5 Nano</option>
