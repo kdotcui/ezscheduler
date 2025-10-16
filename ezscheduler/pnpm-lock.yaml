@@ -14,6 +14,9 @@ importers:
       lucide-react:
         specifier: ^0.544.0
         version: 0.544.0(react@19.2.0)
+      openai:
+        specifier: ^6.4.0
+        version: 6.4.0(zod@3.25.76)
       react:
         specifier: ^19.1.1
         version: 19.2.0
@@ -1582,6 +1585,18 @@ packages:
   open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
+
+  openai@6.4.0:
+    resolution: {integrity: sha512-vSoVBRTPMgg3oSaoHIGfbYM2zwGN0D4F2aiNHMeu1lZHFOwfJMAF0X110HDdedYvcsIo578ujQ11WL5kP687Cw==}
+    hasBin: true
+    peerDependencies:
+      ws: ^8.18.0
+      zod: ^3.25 || ^4.0
+    peerDependenciesMeta:
+      ws:
+        optional: true
+      zod:
+        optional: true
 
   ora@6.3.1:
     resolution: {integrity: sha512-ERAyNnZOfqM+Ao3RAvIXkYh5joP220yf59gVe2X/cI6SiCxIdi4c9HZKZD8R6q/RDXEje1THBju6iExiSsgJaQ==}
@@ -3537,6 +3552,10 @@ snapshots:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+
+  openai@6.4.0(zod@3.25.76):
+    optionalDependencies:
+      zod: 3.25.76
 
   ora@6.3.1:
     dependencies:

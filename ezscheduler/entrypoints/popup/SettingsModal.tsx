@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import CloseEye from "@/assets/closeeye.svg";
-import OpenEye from "@/assets/openeye.svg";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function SettingsModal() {
   const [apiKey, setApiKey] = useState("");
@@ -65,11 +64,11 @@ export default function SettingsModal() {
                 onClick={() => setShowApiKey(!showApiKey)}
                 className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded"
               >
-                <img 
-                  src={showApiKey ? CloseEye : OpenEye} 
-                  alt={showApiKey ? "Hide API key" : "Show API key"} 
-                  className="w-4 h-4" 
-                />
+                {showApiKey ? (
+                  <EyeOff className="w-4 h-4" aria-label="Hide API key" />
+                ) : (
+                  <Eye className="w-4 h-4" aria-label="Show API key" />
+                )}
               </button>
             </div>
           </div>
