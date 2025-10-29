@@ -128,6 +128,8 @@ export async function parseEventFromNaturalLanguage(
   }
 
   try {
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    
     const client = new OpenAI({
       apiKey,
       dangerouslyAllowBrowser: true, 
@@ -139,12 +141,14 @@ export async function parseEventFromNaturalLanguage(
         {
           role: 'system',
           content: `You are a helpful assistant that extracts calendar event information from natural language descriptions. 
-Extract all relevant details including date, time, location, attendees, and any other event information.
-For dates and times, use ISO 8601 format with timezone offset (e.g., 2015-05-28T09:00:00-07:00).
-If no specific time is mentioned, use reasonable defaults (e.g., 9:00 AM for meetings).
-If no end time is specified, assume a 1-hour duration.
-If timezone is not specified, use America/Los_Angeles as default.
-Current date and time for reference: ${new Date().toISOString()}.`,
+                    You will be given a natural language description of an event. 
+                    Extract all relevant details including date, time, location, attendees, and any other event information.
+                    Return the details in a JSON object.
+                    For dates and times, use ISO 8601 format with timezone offset (e.g., 2015-05-28T09:00:00-07:00).
+                    If no specific time is mentioned, use reasonable defaults (e.g, 12pm for lunch, 6pm for dinner).
+                    If no end time is specified, assume a 1-hour duration.
+                    If timezone is not specified, use ${userTimeZone} as default.
+                    Current date and time for reference: ${new Date().toISOString()}.`,
         },
         {
           role: 'user',
