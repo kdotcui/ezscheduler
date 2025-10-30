@@ -98,7 +98,7 @@ const calendarEventSchema = {
   },
   required: ["summary", "location", "description", "start", "end", "recurrence", "attendees", "reminders"],
   additionalProperties: false
-} as const;
+};
 
 export interface ParseEventOptions {
   apiKey: string;
@@ -135,9 +135,9 @@ export async function parseEventFromNaturalLanguage(
       dangerouslyAllowBrowser: true, 
     });
 
-    const completion = await client.chat.completions.create({
+    const response = await client.responses.create({
       model,
-      messages: [
+      input: [
         {
           role: 'system',
           content: `You are a helpful assistant that extracts calendar event information from natural language descriptions. 
@@ -155,17 +155,17 @@ export async function parseEventFromNaturalLanguage(
           content: prompt,
         },
       ],
-      response_format: {
-        type: "json_schema",
-        json_schema: {
-          name: "calendar_event",
-          strict: true,
+      text: {
+        format: {
+          type: 'json_schema',
+          name: 'calendar_event',
           schema: calendarEventSchema,
+          strict: true,
         },
       },
     });
 
-    const responseContent = completion.choices[0]?.message?.content;
+    const responseContent = response.output_text;
 
     if (!responseContent) {
       return {
