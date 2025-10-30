@@ -38,7 +38,7 @@ export function useChat() {
       // Parse event using OpenAI
       const result = await parseEventFromNaturalLanguage({
         apiKey,
-        model: model || "gpt-4o-2024-08-06",
+        model: model || "gpt-5-nano",
         prompt: content,
       });
 
